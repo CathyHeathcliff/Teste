@@ -1,8 +1,14 @@
 const express = require('express');
+const database = require('./database');
 
 const server = express();
 
-server.use(express.json());
+server.get('/', function(request, response){
+    const dados = database.read;
+    return response.json(dados);
+})
+
+/*server.use(express.json());
 
 const usuarios = [
     { idUsuario: 'IsaMolaz', nome: 'Isa', telefone: 7070 , email: 'isa.com', senha: 123 }
@@ -50,5 +56,6 @@ server.delete('/usuario/:id', function(request, response) {
     
    return response.status(204).send();
 })
- 
+*/
+
 server.listen(process.env.PORT || 3000);
