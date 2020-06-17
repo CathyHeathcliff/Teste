@@ -10,15 +10,21 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-const sqlCreate = `CREATE TABLE IF NOT EXISTS usuarios
+const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
     (
-        idUsuario serial primary key,
+        idUsuario varchar(50) primary key,
         nome varchar(50) not null,
         telefone int not null, 
         email varchar(50) not null, 
         senha varchar(12) not null
     )
 `;
+
+pool.query(sqlCreate, function(error, result) {
+    if(error)
+        throw error
+    console.log('Tabela criada com sucesso!')
+} );
     
 module.exports = {
 

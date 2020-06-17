@@ -7,19 +7,19 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-server.get('/', async function(request, response){
+server.get('/usuario', async function(request, response){
     const dados = await database.read();
     return response.json(dados);
 })
 
-
 server.post('/', async function(request, response) {
+    const idUsuario = request.body.idUsuario;
     const nome = request.body.nome; //JSON
     const telefone = request.body.telefone;
     const email = request.body.email;
     const senha = request.body.senha;
     
-    const result = await database.create(nome, telefone, email, senha);
+    const result = await database.create(idUsuario, nome, telefone, email, senha);
 
     return response.status(204).send();
 })
