@@ -46,6 +46,7 @@ module.exports = {
         return result.rowCount;
     },
 
+    
     async read() {
         const sql = 'SELECT * FROM usuarios'
         const result = await pool.query(sql);

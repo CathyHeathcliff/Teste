@@ -10,6 +10,7 @@ server.get('/', async function(request, response){
     return response.json(dados);
 })
 
+
 server.post('/', async function(request, response) {
     const nome = request.body.nome; //JSON
     const telefone = request.body.telefone;
