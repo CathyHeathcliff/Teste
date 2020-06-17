@@ -18,7 +18,7 @@ const sqlCreate = `CREATE TABLE IF NOT EXISTS usuarios
         email varchar(50) not null, 
         senha varchar(12) not null
     )
-;`
+`;
     
 module.exports = {
 
