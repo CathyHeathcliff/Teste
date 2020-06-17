@@ -41,7 +41,7 @@ server.put('/usuario/:id', function(request, response) {
 server.delete('/usuario/:id', function(request, response) {
     const id = request.params.id;
    
-    for(let i = 0; i < idUsuario.length; i++){
+    for(let i = 0; i < usuarios.length; i++){
         if(usuarios[i].idUsuario == id) {
             usuarios.splice(i, 1);
             break;
