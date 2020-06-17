@@ -9,7 +9,7 @@ server.use(express.json());
 
 server.get('/usuario', async function(request, response){
     const dados = await database.read();
-    return response.json(dados);
+    return response.json(dados); 
 })
 
 server.post('/', async function(request, response) {

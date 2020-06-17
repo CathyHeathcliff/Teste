@@ -7,7 +7,7 @@ const pool = new Pool({
     host: 'ec2-50-17-90-177.compute-1.amazonaws.com',
     database: 'd40m7l97mbsdlt',
     port: '5432',
-    ssl: {rejectUnauthorized: false}
+    ssl: {rejectUnauthorized: false} 
 });
 
 const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
