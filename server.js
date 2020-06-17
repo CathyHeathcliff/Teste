@@ -12,7 +12,7 @@ server.get('/usuario', async function(request, response){
     return response.json(dados); 
 })
 
-server.post('/', async function(request, response) {
+server.post('/usuario', async function(request, response) {
     const idUsuario = request.body.idUsuario;
     const nome = request.body.nome; //JSON
     const telefone = request.body.telefone;
