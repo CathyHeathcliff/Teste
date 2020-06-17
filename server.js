@@ -3,11 +3,23 @@ const database = require('./database');
 
 const server = express();
 
-server.get('/', function(request, response){
-    const dados = database.read;
+server.use(express.json());
+
+server.get('/', async function(request, response){
+    const dados = await database.read();
     return response.json(dados);
 })
 
+server.post('/', async function(request, response) {
+    const nome = request.body.nome; //JSON
+    const telefone = request.body.telefone;
+    const email = request.body.email;
+    const senha = request.body.senha;
+    
+    const result = await database.create(nome, telefone, email, senha);
+
+    return response.status(204).send();
+})
 /*server.use(express.json());
 
 const usuarios = [

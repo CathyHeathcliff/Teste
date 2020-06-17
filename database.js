@@ -36,21 +36,20 @@ const sqlCreate = '
 });
 */
 
-async function create() {
-    const sql = 'INSERT INTO usuarios (nome, telefone, email, senha)
-                    VALUES ('Adolfo', 888, 'adolfo.com', '444')';
+module.exports = {
 
-    const result = await pool.query(sql);
+    async create(nome, telefone, email, senha) {
+        const sql = 'INSERT INTO usuarios (nome, telefone, email, senha)
+                        VALUES ($1, $2, $3, $4)';
 
-    return result.rowCount;
+        const result = await pool.query(sql[nome, telefone, email, senha]);
+        return result.rowCount;
+    },
+
+    async read() {
+        const sql = 'SELECT * FROM usuarios'
+        const result = await pool.query(sql);
+        return result.rows;
+    }
+
 }
-
-async function read() {
-    const sql = 'SELECT * FROM usuarios'
-
-    const result = await pool.query(sql);
-
-    return result.rows;
-}
-
-
