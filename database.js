@@ -12,7 +12,7 @@ const pool = new Pool({
 
 const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
     (
-        idUsuario int serial primary key,
+        idUsuario serial primary key,
         Nome varchar(50) not null,
         Telefone int not null, 
         Email varchar(50) not null, 
