@@ -13,10 +13,10 @@ const pool = new Pool({
 const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
     (
         idUsuario varchar(50) primary key,
-        nome varchar(50) not null,
-        telefone int not null, 
-        email varchar(50) not null, 
-        senha varchar(12) not null
+        Nome varchar(50) not null,
+        Telefone int not null, 
+        Email varchar(50) not null, 
+        Senha varchar(12) not null
     )
 `;
 
@@ -29,18 +29,43 @@ pool.query(sqlCreate, function(error, result) {
 module.exports = {
 
     async create(idUsuario, Nome, Telefone, Email, Senha) {
-        const sql = `INSERT INTO usuarios (idUsuario, Nome, Telefone, Email, Senha)
+    const sql = `INSERT INTO usuario (idUsuario, Nome, Telefone, Email, Senha)
                         VALUES ($1, $2, $3, $4, $5)`;
 
-        const result = await pool.query(sql[idUsuario, Nome, Telefone, Email, Senha]);
+    const result = await pool.query(sql, [idUsuario, Nome, Telefone, Email, Senha])
+    
+    return result.rowCount;
+    
+    },
+
+    async select() {
+        const sql = `SELECT * FROM usuario`;
+        
+        const result = await pool.query(sql)
+        
+        return result.rows;
+    },
+
+    async delete(idUsuario) {
+        const sql = `DELETE FROM usuario where $1 = idUsuario`;
+        
+        const result = await pool.query(sql, [idUsuario])
+        
         return result.rowCount;
     },
 
-    
-    async read() {
-        const sql = 'SELECT * FROM usuarios'
-        const result = await pool.query(sql);
-        return result.rows;
+    async update(idUsuario, Nome, Telefone, Email, Senha) {
+        const sql = `UPDATE usuario SET
+        Nome = $2,
+        Telefone = $3,
+        Email = $4,
+        Senha = $5
+
+        where $1 = idUsuario`;
+
+        const result = await pool.query(sql, [idUsuario, Nome, Telefone, Email, Senha])
+
+        return result.rowCount;
     }
 
 }
