@@ -12,7 +12,7 @@ const pool = new Pool({
 
 const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
     (
-        idUsuario varchar(50) primary key,
+        idUsuario int serial primary key,
         Nome varchar(50) not null,
         Telefone int not null, 
         Email varchar(50) not null, 
@@ -28,18 +28,18 @@ pool.query(sqlCreate, function(error, result) {
     
 module.exports = {
 
-    async create(idUsuario, Nome, Telefone, Email, Senha) {
-    const sql = `INSERT INTO usuario (idUsuario, Nome, Telefone, Email, Senha)
-                        VALUES ($1, $2, $3, $4, $5)`;
+    async create(Nome, Telefone, Email, Senha) {
+    const sql = `INSERT INTO usuario (Nome, Telefone, Email, Senha)
+                        VALUES ($1, $2, $3, $4)`;
 
-    const result = await pool.query(sql, [idUsuario, Nome, Telefone, Email, Senha])
+    const result = await pool.query(sql, [Nome, Telefone, Email, Senha])
     
     return result.rowCount;
     
     },
 
     async select() {
-        const sql = `SELECT * FROM usuario`;
+        const sql = `SELECT * FROM usuario order by idUsuario`;
         
         const result = await pool.query(sql)
         
