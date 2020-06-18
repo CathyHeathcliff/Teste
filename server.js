@@ -30,7 +30,7 @@ server.put('/usuario/idUsuario/:idUsuario', async function(request, response) {
 
     const result = await database.update(idUsuario);
 
-    return response.status(204).send();
+    return response.status(204).send(); 
 })
 
 server.delete('/usuario/:idUsuario', async function(request, response) {

@@ -61,7 +61,7 @@ module.exports = {
         Email = $4,
         Senha = $5
 
-        where $1 = idUsuario`;
+        where $1 = idUsuario`; 
 
         const result = await pool.query(sql, [idUsuario, Nome, Telefone, Email, Senha])
 
