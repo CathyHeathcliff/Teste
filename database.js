@@ -10,7 +10,7 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false} 
 });
 
-const sqlCreate = `CREATE TABLE IF NOT EXISTS usuario
+const sqlCreate = `CREATE TABLE IF NOT EXISTS usuarios
     (
         idUsuario serial primary key,
         Nome varchar(50) not null,
@@ -29,7 +29,7 @@ pool.query(sqlCreate, function(error, result) {
 module.exports = {
 
     async create(Nome, Telefone, Email, Senha) {
-    const sql = `INSERT INTO usuario (Nome, Telefone, Email, Senha)
+    const sql = `INSERT INTO usuarios (Nome, Telefone, Email, Senha)
                         VALUES ($1, $2, $3, $4)`;
 
     const result = await pool.query(sql, [Nome, Telefone, Email, Senha])
@@ -39,7 +39,7 @@ module.exports = {
     },
 
     async select() {
-        const sql = `SELECT * FROM usuario order by idUsuario`;
+        const sql = `SELECT * FROM usuarios order by idUsuario`;
         
         const result = await pool.query(sql)
         
@@ -47,7 +47,7 @@ module.exports = {
     },
 
     async delete(idUsuario) {
-        const sql = `DELETE FROM usuario where $1 = idUsuario`;
+        const sql = `DELETE FROM usuarios where $1 = idUsuario`;
         
         const result = await pool.query(sql, [idUsuario])
         
@@ -55,7 +55,7 @@ module.exports = {
     },
 
     async update(idUsuario, Nome, Telefone, Email, Senha) {
-        const sql = `UPDATE usuario SET
+        const sql = `UPDATE usuarios SET
         Nome = $2,
         Telefone = $3,
         Email = $4,
