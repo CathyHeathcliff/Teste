@@ -26,9 +26,9 @@ server.post('/usuario', async function(request, response) {
 server.put('/usuario/idUsuario/:idUsuario', async function(request, response) {
 
     const idUsuario = request.params.idUsuario;
-    const {} = request.body;
+    const {Nome, Telefone, Email, Senha} = request.body;
 
-    const result = await database.update(idUsuario);
+    const result = await database.update(idUsuario, Nome, Telefone, Email, Senha);
 
     return response.status(204).send(); 
 })
