@@ -10,12 +10,12 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-server.get('/usuarios', async function(request, response) {
+server.get('/usuario', async function(request, response) {
     const dados = await database.select();
     return response.json(dados); 
 })
 
-server.post('/usuarios', async function(request, response) {
+server.post('/usuario', async function(request, response) {
     const {Nome, Telefone, Email, Senha}  = request.body;
     
     const result = await database.create(Nome, Telefone, Email, Senha);
@@ -23,7 +23,7 @@ server.post('/usuarios', async function(request, response) {
     response.status(204).send();
 })
 
-server.put('/usuarios/idUsuario/:idUsuario', async function(request, response) {
+server.put('/usuario/idUsuario/:idUsuario', async function(request, response) {
 
     const idUsuario = request.params.idUsuario;
     const {Nome, Telefone, Email, Senha} = request.body;
@@ -33,7 +33,7 @@ server.put('/usuarios/idUsuario/:idUsuario', async function(request, response) {
     return response.status(204).send(); 
 })
 
-server.delete('/usuarios/:idUsuario', async function(request, response) {
+server.delete('/usuario/:idUsuario', async function(request, response) {
 
     const idUsuario = request.params.idUsuario;
 
